@@ -54,4 +54,34 @@ mocksRouter.get('/mockingPets', (req, res) => {
     })
 })
 
+mocksRouter.get('/users', async (req, res) => {
+    try {
+        const users = await User.find()
+        res.send({
+            status: "success",
+            payload: users,
+        })
+    } catch (error) {
+        res.status(500).send({
+            status: "error",
+            message: error.message,
+        })
+    }
+});
+
+mocksRouter.get('/pets', async (req, res) => {
+    try {
+        const pets = await Pet.find()
+        res.send({
+            status: "success",
+            payload: pets,
+        })
+    } catch (error) {
+        res.status(500).send({
+            status: "error",
+            message: error.message,
+        })
+    }
+})
+
 export default mocksRouter
